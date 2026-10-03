@@ -1,0 +1,402 @@
+#omg-header {
+  z-index: 450;
+  padding-right: 110px; /* clear of the theme toggle and GitHub icon */
+  box-sizing: border-box;
+}
+
+/* core.css is shared across other projects, so the theme-picker's swatch
+   styling stays untouched there -- this overrides it to render icons
+   (sun/moon/spiral, same set as react-morph-charts' ThemeToggle) instead of
+   plain colored circles, without needing to edit the shared file. */
+#omg-theme-picker {
+  gap: 2px;
+}
+#omg-theme-picker > a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  width: 28px;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  background: none;
+  color: currentColor;
+  opacity: 0.75;
+}
+#omg-theme-picker > a:hover {
+  opacity: 1;
+}
+#omg-theme-picker > a.selected {
+  opacity: 1;
+}
+
+/* GitHub link, just below the theme toggle */
+#omg-github {
+  position: absolute;
+  top: 34px;
+  right: 4px; /* centred under the last toggle icon */
+  margin-top: 12px;
+  z-index: 200;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: none;
+  opacity: 0.75;
+}
+#omg-github svg {
+  width: 30px; /* same size in every theme (the themes' generic svg rule differs) */
+  height: 30px;
+}
+html[data-theme="evol-blue"] #omg-github svg {
+  fill: white; /* like the theme toggle icons on the blue background */
+}
+#omg-github:hover,
+#omg-github:focus-visible {
+  opacity: 1;
+}
+
+html {
+  margin: 0;
+  padding: 0 0 0 20px;
+}
+button {
+  margin: 0; /* the themes give buttons a top margin, which breaks rows */
+}
+select {
+  font: inherit;
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--input-text);
+  background-color: var(--input-bg);
+  border: 1px solid var(--input-border);
+}
+h3 {
+  margin-top: 34px;
+}
+.explain {
+  max-width: 680px;
+  line-height: 1.55;
+}
+.explain .note {
+  font-size: 0.9em;
+  opacity: 0.8;
+}
+.footer {
+  margin-top: 40px;
+  font-size: 0.9em;
+  opacity: 0.85;
+}
+
+/* ---------------------------------------------------------------- colors */
+
+:root {
+  --ec-sun: #ffd54f;
+  --ec-moon: #cfd8dc;
+  --ec-blood: #d9653b;
+  --ec-accent: #ffb74d;
+  --ec-line: rgba(255, 255, 255, 0.18);
+  --ec-muted: rgba(255, 255, 255, 0.7);
+  --ec-season: rgba(255, 213, 79, 0.1);
+  --ec-shadow: #10151d;
+  --ec-penumbra: rgba(255, 255, 255, 0.08);
+  --ec-umbra: rgba(0, 0, 0, 0.45);
+  --ec-yes: #81c784;
+  --ec-some: #ffcc80;
+  --ec-card: rgba(255, 255, 255, 0.04);
+}
+html[data-theme="light"] {
+  --ec-sun: #f9a825;
+  --ec-moon: #90a4ae;
+  --ec-blood: #c0392b;
+  --ec-accent: #d9822b;
+  --ec-line: rgba(26, 33, 45, 0.18);
+  --ec-muted: rgba(26, 33, 45, 0.7);
+  --ec-season: rgba(249, 168, 37, 0.14);
+  --ec-shadow: #263238;
+  --ec-penumbra: rgba(26, 33, 45, 0.07);
+  --ec-umbra: rgba(26, 33, 45, 0.3);
+  --ec-yes: #2e7d32;
+  --ec-some: #b26a00;
+  --ec-card: rgba(26, 33, 45, 0.04);
+}
+html[data-theme="evol-blue"] {
+  --ec-accent: #ffcc80;
+  --ec-line: rgba(255, 255, 255, 0.3);
+  --ec-muted: rgba(255, 255, 255, 0.85);
+  --ec-season: rgba(255, 255, 255, 0.12);
+  --ec-shadow: #01355a;
+  --ec-penumbra: rgba(255, 255, 255, 0.12);
+  --ec-umbra: rgba(0, 20, 40, 0.45);
+  --ec-yes: #b9f6ca;
+  --ec-some: #ffe0b2;
+  --ec-card: rgba(255, 255, 255, 0.08);
+}
+
+.content {
+  max-width: 820px;
+}
+
+/* ---------------------------------------------------------------- next */
+
+.next-box {
+  margin: 0 0 22px;
+}
+.next-label {
+  margin: 0;
+  opacity: 0.8;
+}
+.next-type {
+  font-size: 2.6em;
+  font-weight: bold;
+  line-height: 1.1;
+  margin: 4px 0 6px;
+}
+.next-type.solar {
+  color: var(--ec-sun);
+}
+.next-type.lunar {
+  color: var(--ec-blood);
+}
+.next-date {
+  font-size: 1.15em;
+  margin: 0 0 8px;
+}
+
+.place-pick,
+.year-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+}
+.place-pick {
+  margin: 0 0 8px;
+}
+.year-nav {
+  margin: 0 0 8px;
+}
+.year-label {
+  font-size: 1.3em;
+  min-width: 3em;
+  text-align: center;
+}
+.year-btn {
+  min-width: 40px;
+}
+.year-btn:disabled {
+  opacity: 0.4;
+}
+.year-sum {
+  margin: 0 0 8px;
+  opacity: 0.85;
+}
+
+/* ---------------------------------------------------------------- timeline */
+
+.year-strip svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.year-strip .axis {
+  stroke: var(--ec-line);
+}
+.year-strip text.month {
+  font-size: 12px;
+  fill: var(--ec-muted);
+}
+.season {
+  fill: var(--ec-season);
+}
+.now {
+  stroke: var(--ec-accent);
+  stroke-width: 2;
+}
+.mk-sun {
+  fill: var(--ec-sun);
+}
+.mk-bite {
+  fill: var(--ec-shadow);
+}
+.mk-moon {
+  fill: var(--ec-moon);
+}
+.mk-moon.total {
+  fill: var(--ec-blood);
+}
+.mk-moon.partial {
+  fill: #b98068;
+}
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 18px;
+  font-size: 0.85em;
+  opacity: 0.85;
+  margin: 2px 0 18px;
+}
+.legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.legend svg {
+  height: 16px;
+  width: auto;
+}
+
+/* ---------------------------------------------------------------- cards */
+
+.cards {
+  display: grid;
+  gap: 14px;
+}
+.ec-card {
+  display: grid;
+  grid-template-columns: 170px minmax(0, 1fr);
+  gap: 6px 18px;
+  padding: 14px 16px;
+  border-radius: 8px;
+  background: var(--ec-card);
+  border-left: 4px solid var(--ec-moon);
+  scroll-margin-top: 90px;
+}
+.ec-card.solar {
+  border-left-color: var(--ec-sun);
+}
+.ec-card.lunar.total {
+  border-left-color: var(--ec-blood);
+}
+.ec-card figure {
+  margin: 0;
+  text-align: center;
+}
+.ec-card figcaption {
+  font-size: 0.75em;
+  opacity: 0.7;
+}
+.dia {
+  width: 100%;
+  max-width: 170px;
+  height: auto;
+  overflow: visible;
+}
+.ec-card h4 {
+  margin: 0;
+  font-size: 1.3em;
+}
+.ec-card.solar h4 {
+  color: var(--ec-sun);
+}
+.ec-card.lunar.total h4 {
+  color: var(--ec-blood);
+}
+.ec-date {
+  margin: 2px 0 6px;
+  font-size: 1.05em;
+}
+.ec-note {
+  margin: 0 0 8px;
+  opacity: 0.8;
+  font-size: 0.95em;
+}
+.ec-local {
+  margin: 0 0 8px;
+  line-height: 1.45;
+}
+.ec-local::before {
+  content: "";
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  margin-right: 8px;
+  background: var(--ec-line);
+  vertical-align: 1px;
+}
+.ec-local.yes::before {
+  background: var(--ec-yes);
+}
+.ec-local.some::before {
+  background: var(--ec-some);
+}
+.ec-local.yes {
+  font-weight: bold;
+}
+.ec-card dl {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 2px 12px;
+  margin: 0;
+  font-size: 0.9em;
+}
+.ec-card dt {
+  opacity: 0.7;
+}
+.ec-card dd {
+  margin: 0;
+}
+
+/* the diagrams */
+.sun {
+  fill: var(--ec-sun);
+}
+.sun-hidden {
+  fill: var(--ec-sun);
+  opacity: 0.25;
+}
+.corona {
+  opacity: 0.8;
+}
+.moon-disk {
+  fill: var(--ec-shadow);
+}
+.penumbra {
+  fill: var(--ec-penumbra);
+  stroke: var(--ec-line);
+}
+.umbra {
+  fill: var(--ec-umbra);
+  stroke: var(--ec-line);
+}
+.moon-path {
+  stroke: var(--ec-muted);
+  stroke-dasharray: 3 3;
+}
+.moon-ghost {
+  fill: var(--ec-moon);
+  opacity: 0.35;
+}
+.moon-max {
+  fill: var(--ec-moon);
+}
+.moon-max.total {
+  fill: var(--ec-blood);
+}
+.moon-max.partial {
+  fill: #b98068;
+}
+.moon-max.penumbral {
+  fill: #a9b4b9;
+}
+
+.explain .warning {
+  border-left: 3px solid var(--ec-accent);
+  padding-left: 12px;
+}
+
+@media only screen and (max-width: 560px) {
+  .ec-card {
+    grid-template-columns: 1fr;
+  }
+  .ec-card figure .dia {
+    max-width: 130px;
+  }
+  .next-type {
+    font-size: 2em;
+  }
+}

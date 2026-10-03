@@ -1,0 +1,24 @@
+{
+  "name": "eclipse-calendar",
+  "version": "1.0.0",
+  "description": "Every solar and lunar eclipse from 1900 to 2100, computed in the browser: type, time, path, duration, Saros, and what it looks like from your city.",
+  "repository": "github:evoluteur/eclipse-calendar",
+  "homepage": "https://evoluteur.github.io/eclipse-calendar/",
+  "copyright": "(c) 2026 Olivier Giulieri",
+  "author": "Olivier Giulieri (https://evoluteur.github.io/)",
+  "license": "MIT",
+  "keywords": [
+    "eclipse",
+    "solar-eclipse",
+    "lunar-eclipse",
+    "eclipse-calendar",
+    "saros",
+    "astronomy",
+    "moon",
+    "sun",
+    "meeus",
+    "esoteric",
+    "esoterica",
+    "mystic"
+  ]
+}
